@@ -10,8 +10,8 @@
 namespace esphome {
 namespace nabu {
 
-// static const size_t INPUT_RING_BUFFER_SAMPLES = 24000;
-static const size_t INPUT_RING_BUFFER_SAMPLES = 8192;
+static const size_t INPUT_RING_BUFFER_SAMPLES = 24000;
+//static const size_t INPUT_RING_BUFFER_SAMPLES = 8192;
 static const size_t OUTPUT_BUFFER_SAMPLES = 8192;
 static const size_t QUEUE_COUNT = 20;
 
@@ -68,11 +68,15 @@ void AudioMixer::audio_mixer_task_(void *params) {
   TaskEvent event;
   CommandEvent command_event;
 
-  ExternalRAMAllocator<int16_t> allocator(ExternalRAMAllocator<int16_t>::ALLOW_FAILURE);
+  #ifdef USE_PSRAM
+    ExternalRAMAllocator<int16_t> allocator(ExternalRAMAllocator<int16_t>::ALLOW_FAILURE);
+  #else
+    RAMAllocator<int16_t> allocator(RAMAllocator<int16_t>::ALLOC_INTERNAL);
+  #endif
   int16_t *media_buffer = allocator.allocate(OUTPUT_BUFFER_SAMPLES);
   int16_t *announcement_buffer = allocator.allocate(OUTPUT_BUFFER_SAMPLES);
   int16_t *combination_buffer = allocator.allocate(OUTPUT_BUFFER_SAMPLES);
-
+  
   int16_t *combination_buffer_current = combination_buffer;
   size_t combination_buffer_length = 0;
 
