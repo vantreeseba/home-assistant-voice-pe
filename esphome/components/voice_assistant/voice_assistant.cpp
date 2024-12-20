@@ -919,7 +919,7 @@ void VoiceAssistant::on_set_configuration(const std::vector<std::string> &active
 const Configuration &VoiceAssistant::get_configuration() {
   this->config_.available_wake_words.clear();
   this->config_.active_wake_words.clear();
-
+  #ifdef USE_MICRO_WAKE_WORD
   if (this->micro_wake_word_) {
     this->config_.max_active_wake_words = 1;
 
@@ -940,7 +940,7 @@ const Configuration &VoiceAssistant::get_configuration() {
     // No microWakeWord
     this->config_.max_active_wake_words = 0;
   }
-
+  #endif
   return this->config_;
 };
 
