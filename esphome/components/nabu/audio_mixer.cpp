@@ -11,7 +11,7 @@ namespace esphome {
 namespace nabu {
 
 // static const size_t INPUT_RING_BUFFER_SAMPLES = 24000;
-static const size_t INPUT_RING_BUFFER_SAMPLES = 8192/8;
+static const size_t INPUT_RING_BUFFER_SAMPLES = 8192;
 static const size_t OUTPUT_BUFFER_SAMPLES = 8192;
 static const size_t QUEUE_COUNT = 20;
 
