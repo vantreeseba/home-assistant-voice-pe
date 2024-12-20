@@ -13,7 +13,7 @@ namespace nabu {
 static const size_t FILE_BUFFER_SIZE = 16 * 1024;
 static const size_t FILE_RING_BUFFER_SIZE = 16 * 1024;
 // static const size_t BUFFER_SIZE_SAMPLES = 32768;
-static const size_t BUFFER_SIZE_SAMPLES = 32768/2;
+static const size_t BUFFER_SIZE_SAMPLES = 32768/4;
 static const size_t BUFFER_SIZE_BYTES = BUFFER_SIZE_SAMPLES * sizeof(int16_t);
 
 static const uint32_t READER_TASK_STACK_SIZE = 5 * 1024;
